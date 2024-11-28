@@ -1,0 +1,13 @@
+#!/bin/bash
+# Copyright 2024 Toyota Motor Corporation.  All rights reserved. 
+
+ARG_USER=${host_user_generated}
+
+# Allow tmux to create a temporally file
+# https://www.itmedia.co.jp/help/tips/linux/l0358.html
+export TMUX_TMPDIR=/home/${host_user_generated}/.tmux
+export SHELL=/bin/bash
+
+# Run entrypoint
+export HOME=/home/${ARG_USER}
+exec /usr/sbin/gosu ${ARG_USER} "$@"

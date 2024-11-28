@@ -1,0 +1,25 @@
+# Copyright 2024 Toyota Motor Corporation.  All rights reserved. 
+
+FROM ${from_image}
+
+ENV HOST_USER=${host_user_generated}
+ENV USER_ID=${host_user_uid}
+ENV GROUP_ID=${host_user_gid}
+ENV NO_ROOT_TOOLS_PATH=${where_no_root_tools_is}
+
+RUN apt-get update \
+    && apt-get install -y gosu tmux \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+RUN useradd -u $USER_ID -o -m ${HOST_USER}
+RUN groupmod -g $GROUP_ID ${HOST_USER}
+RUN usermod -aG ${HOST_USER} ${HOST_USER}
+RUN newgrp ${HOST_USER}
+
+# Copy entrypoint inside the container
+COPY ${NO_ROOT_TOOLS_PATH}/dist/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# Add tmux
+COPY ${NO_ROOT_TOOLS_PATH}/src/.tmux.conf /home/${HOST_USER}/.tmux.conf
