@@ -6,9 +6,9 @@
 
 [Overview](#Overview) | [Installation](#installation) | [Usage](#usage) | [Tutorial](#tutorial) | [License](#license)
 
-**NO-ROOT-DOCKER-RUN** is a repository containing scripts that support docker-based software development used by the TOYOTA Frontier Research Center robotics research group.
+**NO-ROOT-DOCKER-RUN** is a repository containing scripts that support Docker-based software development used by the TOYOTA Frontier Research Center robotics research group.
 Our goal is to provide an easy-to-use reproduction of our study results and facilitate further research.
-Although this pacage works as a standalone library, this design is particularly intended for [TRI-VIDAR](https://github.com/TRI-ML/vidar) and [SGInit-VO](https://github.com/ToyotaFRC/SGInit-VO), where the Makefile-and-docker builds the environmental setup.
+Although this package works as a standalone library, this design is particularly intended for [TRI-VIDAR](https://github.com/TRI-ML/vidar) and [SGInit-VO](https://github.com/Toyota/SGInit-VO), where the Makefile-and-docker builds the environmental setup.
 
 Please note that we cannot guarantee future monitoring and official support while we strive to provide assistance or maintenance. 
 
@@ -57,7 +57,7 @@ noroot-interactive: mkdir-writable
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
 
-For a complete example, please refer to this sample code, [Makefile](Makefile), or that of [SGInit-VO](https://github.com/ToyotaFRC/SGInit-VO/blob/main/Makefile): where this NO-ROOT-TOOLS is integrated as the *git submodule* and associated with the PATH2NRT configuration, i.e. `PATH2NRT ?= thirdparty/no_root_docker_run`.
+For a complete example, please refer to [this Makefile](Makefile), or that of [SGInit-VO](https://github.com/Toyota/SGInit-VO/blob/main/Makefile): where this NO-ROOT-TOOLS is integrated as the *git submodule* and associated with the PATH2NRT configuration, i.e. `PATH2NRT ?= thirdparty/no_root_docker_run`.
 
 ### Commands
 - `initialize-scripts`: Create docker builder scripts, including host information (username, uid, gid) from templates at `src`.
